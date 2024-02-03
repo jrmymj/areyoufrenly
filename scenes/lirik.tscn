@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://bej0clt5lfnap"]
+
+[ext_resource type="Script" path="res://scenes/lirik.gd" id="1_4gwnt"]
+[ext_resource type="Texture2D" uid="uid://b74likw6iopeo" path="res://art/chars/lirik/anims/walk/walk_1.png" id="1_hbdvp"]
+[ext_resource type="Texture2D" uid="uid://ydeechx4hbpx" path="res://art/chars/lirik/anims/idle/idle.png" id="2_5jvj2"]
+[ext_resource type="Texture2D" uid="uid://c74bn1ij2hh10" path="res://art/chars/lirik/anims/walk/walk_2.png" id="2_ay8dp"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_byu4r"]
+atlas = ExtResource("2_5jvj2")
+region = Rect2(0, 0, 1000, 1000)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1buul"]
+atlas = ExtResource("2_5jvj2")
+region = Rect2(1000, 0, 1000, 1000)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hk80n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_byu4r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1buul")
+}],
+"loop": true,
+"name": &"idling",
+"speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_hbdvp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_ay8dp")
+}],
+"loop": true,
+"name": &"walking",
+"speed": 10.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ns0yv"]
+radius = 147.0
+height = 824.0
+
+[node name="CharacterBody2D" type="CharacterBody2D"]
+script = ExtResource("1_4gwnt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hk80n")
+animation = &"walking"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_ns0yv")
